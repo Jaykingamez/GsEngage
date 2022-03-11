@@ -5,7 +5,9 @@ import chalkAnimation from 'chalk-animation';
 import {longSleep, sleep} from './Functions/sleep.js';
 import {display} from './Functions/display.js';
 
-async function start(){
+import {main} from './Choices/main.js'
+
+async function intro(){
     const title = chalkAnimation.karaoke(display("Sono Chi no sadame, Golddddddddddddden Sect!"), 5);
     await sleep();
     title.stop()
@@ -18,4 +20,8 @@ async function start(){
     `)
 }
 
-await start();
+async function execution(){
+    await intro();
+}
+
+await execution();

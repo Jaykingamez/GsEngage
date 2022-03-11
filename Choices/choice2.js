@@ -1,10 +1,10 @@
 import chalk from 'chalk';
 import chalkAnimation from 'chalk-animation';
 import inquirer from 'inquirer';
-import {longSleep, middleSleep, sleep} from '../Functions/sleep.js';
-import {display} from '../Functions/display.js';
+import { longSleep, middleSleep, sleep } from '../Functions/sleep.js';
+import { display } from '../Functions/display.js';
 
-async function givenChoice2(){
+export async function givenChoice2() {
     console.log(display("Nonetheless, the problem remained. The Gold Mountain is dying, and its resources are running low. Quickly, a solution will have to be discovered, and that burden lay on my shoulders, the heir apparent to the Goldman Sect. The Sect Leaders quickly adjourned a meeting to discuss the matter, and as heir, I had little choice but to attend."));
     await sleep();
 
@@ -57,10 +57,9 @@ async function givenChoice2(){
     console.log(display("An elder turned to me and deigned for my opinion, causing the others in the room to turn to me. Feeling judged by the eyes of everyone in the room, I quickly came up with some words that would hopefully please everyone. Or perhaps I should be more upfront and direct about my intentions?"));
     await middleSleep();
 
-    return whenChoice2();
 }
 
-async function whenChoice2(){
+async function whenChoice2() {
     const answers = await inquirer.prompt({
         name: 'choice_2',
         type: 'list',
@@ -72,17 +71,21 @@ async function whenChoice2(){
         ],
     })
 
-    return thenChoice2(answers)
+    return answers;
 }
 
-async function thenChoice2(answers){
-    if(answers.choice_2 == display("“I think both elders are right in their various ways of the world. As a young master, it is my utmost duty to study further and truly find out which way is better. I hope that the elders could give us your blessings!”")){
+async function thenChoice2(answers) {
+    if (answers.choice_2 == display("“I think both elders are right in their various ways of the world. As a young master, it is my utmost duty to study further and truly find out which way is better. I hope that the elders could give us your blessings!”")) {
         console.log(display("Some elders nodded in response while others furrowed their bushy eyebrows in response. I breathed a sigh of relief, seeing that I had not attracted the ire of both parties. "));
-    } else if(answers.choice_2 == display("“The ruinous boomsticks of the mortals have slain much of our kind! We shall not deign ourselves to lower ourselves to their feet and plead them for mercy. Cultivators should solve their problems and face the heavens alone!”")){
+    } else if (answers.choice_2 == display("“The ruinous boomsticks of the mortals have slain much of our kind! We shall not deign ourselves to lower ourselves to their feet and plead them for mercy. Cultivators should solve their problems and face the heavens alone!”")) {
         console.log(display("Elder Da Qiang frowned at my statement with the triage of elders by his back. The rest of the elders agreed with my statement with applause. A small minority had stoic expressions throughout the discussion, sitting on the fence."));
-    } else{
+    } else {
         console.log(display("Elder Da Qiang grinned and came over to clasp my back with a pat, remarking, “Good to see such a wise cultivator among the Goldmen Sect. I see you’ll have a bright future ahead!” "));
     }
 }
 
-await givenChoice2();
+export async function main2() {
+    givenChoice2().then(() => whenChoice2()).then((answers) => thenChoice2(answers));
+}
+
+await main2();
